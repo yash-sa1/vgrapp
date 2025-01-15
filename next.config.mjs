@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
+    domains: [
+      'www.fifauteam.com',
+      'e.snmc.io',
+      'm.media-amazon.com',
+      'upload.wikimedia.org'
     ],
   },
 };
