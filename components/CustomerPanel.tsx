@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,12 +14,14 @@ export default function CustomerPanel() {
   const [rentalId, setRentalId] = useState('')
   const [message, setMessage] = useState('')
   const [rentals, setRentals] = useState<string[]>([])
+  const [registeredCustomerId, setRegisteredCustomerId] = useState('');
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       const result = await registerCustomer(customerName)
       setMessage(`Customer registered successfully! ID: ${result}`)
+      setRegisteredCustomerId(result);
     } catch (error) {
       setMessage('Failed to register customer. Please try again.')
     }
@@ -80,6 +82,9 @@ export default function CustomerPanel() {
               />
               <Button type="submit" className="w-full">Register</Button>
             </form>
+            {registeredCustomerId && (
+              <p className="mt-4">Customer registered with ID: {registeredCustomerId}</p>
+            )}
           </TabsContent>
           <TabsContent value="rent">
             <form onSubmit={handleRent} className="space-y-4">
